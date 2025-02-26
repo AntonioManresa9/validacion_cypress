@@ -1,0 +1,121 @@
+
+body {
+    font-family: Arial, sans-serif;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  .password-container {
+    position: relative;
+  }
+  .password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+  }
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+  }
+  .error-message.visible {
+    display: block;
+}
+  button {
+    background-color: #ff5500;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  button:disabled {
+    background-color: #ffaa80;
+    cursor: not-allowed;
+  }
+  .divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #eee;
+  }
+  .divider::before {
+    margin-right: 10px;
+  }
+  .divider::after {
+    margin-left: 10px;
+  }
+  .login-link {
+    text-align: center;
+  }
+  .login-link button {
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+  }
+  .checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+  }
+  .checkbox-container input {
+    margin-top: 3px;
+    margin-right: 8px;
+  }
+  .confirmation {
+    display: none;
+    text-align: center;
+  }
+  .confirmation h2 {
+    color: #ff5500;
+  }
+  .confirmation .info {
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 20px 0;
+    text-align: left;
+  }
+  .password-requirements {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #666;
+  }
+  input.error {
+    border-color: red;
+  }
+  .form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #666;
+  }
+  .age-requirements {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #666;
+  }

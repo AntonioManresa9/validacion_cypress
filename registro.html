@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+
+</head>
+
+<body>
+    <div id="registration-form">
+        <div class="form-group">
+            <input type="text" id="nombre" placeholder="Nombre" required>
+            <div class="error-message" id="nombre-error">Este campo es obligatorio</div>
+        </div>
+
+        <div class="form-group">
+            <input type="email" id="email" placeholder="E-mail*" required>
+            <div class="error-message" id="email-error">Por favor, introduce un email válido</div>
+        </div>
+
+        <div class="form-group">
+            <span class="form-label">Fecha de nacimiento*</span>
+            <input type="date" id="fecha-nacimiento" required>
+            <div class="error-message" id="fecha-nacimiento-error">Debes tener entre 18 y 90 años para registrarte</div>
+            <div class="age-requirements">La edad debe estar entre 18 y 90 años</div>
+        </div>
+
+        <div class="form-group">
+            <div class="password-container">
+                <input type="password" id="password" placeholder="Contraseña*" required>
+                <span class="password-toggle" onclick="togglePassword('password')">👁️</span>
+            </div>
+            <div class="error-message" id="password-error">La contraseña no cumple con los requisitos mínimos</div>
+            <div class="password-requirements">
+                La contraseña debe tener al menos 8 caracteres, incluir una mayúscula, una minúscula, un número y un
+                carácter especial
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="password-container">
+                <input type="password" id="confirm-password" placeholder="Repetir contraseña*" required>
+                <span class="password-toggle" onclick="togglePassword('confirm-password')">👁️</span>
+            </div>
+            <div class="error-message" id="confirm-password-error">Las contraseñas no coinciden</div>
+        </div>
+
+        <div class="checkbox-container">
+            <input type="checkbox" id="privacy-policy" required>
+            <label for="privacy-policy">He leído y acepto la <a href="#">política de privacidad</a></label>
+        </div>
+        <div class="error-message" id="privacy-policy-error">Debes aceptar la política de privacidad</div>
+
+        <button id="submit-btn">Crear cuenta</button>
+
+        <div class="divider">Ya tengo una cuenta</div>
+
+        <div class="login-link">
+            <button>Iniciar sesión</button>
+        </div>
+    </div>
+
+    <div id="confirmation" class="confirmation">
+        <h2>¡Bienvenido/a! <span id="welcome-name"></span></h2>
+        <p>Tu cuenta ha sido creada exitosamente.</p>
+
+        <div class="info">
+            <p><strong>Nombre:</strong> <span id="confirm-nombre"></span></p>
+            <p><strong>Email:</strong> <span id="confirm-email"></span></p>
+            <p><strong>Fecha de nacimiento:</strong> <span id="confirm-fecha"></span></p>
+            <p><strong>Edad:</strong> <span id="confirm-edad"></span> años</p>
+        </div>
+
+        <button id="continue-btn">Continuar al área de usuario</button>
+    </div>
+</body>
+
+</html>
