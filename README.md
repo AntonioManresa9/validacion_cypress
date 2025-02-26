@@ -33,7 +33,7 @@ function hideError() {
 Aunque el formulario de LiveServer mostraba bien el mensaje de error cuando las contraseñas no eran iguales, Cypress no lo reconocía al momento. Al hacer este cambio, el texto del mensaje de "Confirmar Contraseña" ya se reconoce y es verificado correctamente por Cypress.
 
 Posteriormente añadí un apartado nuevo de página de confirmación en el que me dio un error como este:
-![Error]([ruta/a/la/imagen.jpg](https://github.com/AntonioManresa9/validacion_cypress/blob/main/Capturas%20testing%20cypress/Captura6.png))
+![Error](https://github.com/AntonioManresa9/validacion_cypress/blob/main/Capturas%20testing%20cypress/Captura6.png)
 
 Revisé el selector find.com/hexage para asegurarme de que estuviera bien definido. Luego, usé cy.get('selector').should('exist') para confirmar que el elemento estuviera en el DOM y ajusté el tiempo de espera si era necesario.
 ![Solución](ruta/a/la/imagen.jpg)
