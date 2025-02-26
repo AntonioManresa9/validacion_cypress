@@ -17,6 +17,7 @@ Esto asegura que los errores de validación se generen antes de que Cypress los 
 Resultados
 Errores visibles: Ahora los mensajes de error son encontrados correctamente por Cypress, ya que se han generado antes de que Cypress los busque.
 Casos de prueba: Se prueban tanto casos de error como casos de éxito para asegurar que todo funcione como se espera.
+![Error](https://github.com/AntonioManresa9/validacion_cypress/blob/main/Capturas%20testing%20cypress/Captura1.png)
 
 # Problema con la Validación de Contraseñas
 
