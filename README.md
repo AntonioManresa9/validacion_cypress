@@ -5,6 +5,7 @@ Este proyecto tiene como objetivo validar un formulario de registro utilizando C
 ## Problema Inicial
 
 Tuve un problema al intentar validar el mensaje de error de correo electrónico. El error no se mostraba correctamente cuando Cypress intentaba verificarlo.
+![Error](https://github.com/AntonioManresa9/validacion_cypress/blob/main/Capturas%20testing%20cypress/Captura1.png)
 
 ### Solución
 
@@ -17,11 +18,11 @@ Esto asegura que los errores de validación se generen antes de que Cypress los 
 Resultados
 Errores visibles: Ahora los mensajes de error son encontrados correctamente por Cypress, ya que se han generado antes de que Cypress los busque.
 Casos de prueba: Se prueban tanto casos de error como casos de éxito para asegurar que todo funcione como se espera.
-![Error](https://github.com/AntonioManresa9/validacion_cypress/blob/main/Capturas%20testing%20cypress/Captura1.png)
 
 # Problema con la Validación de Contraseñas
 
 El siguiente problema surgió cuando intenté validar que las contraseñas coincidan. Aunque el mensaje de error era visible en el formulario cuando se usaban contraseñas diferentes, Cypress no lo reconocía al principio.
+![Error](https://github.com/AntonioManresa9/validacion_cypress/blob/main/Capturas%20testing%20cypress/Captura2.png)
 
 ## Solución
 
