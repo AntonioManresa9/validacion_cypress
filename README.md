@@ -36,7 +36,7 @@ Posteriormente añadí un apartado nuevo de página de confirmación en el que m
 ![Error](https://github.com/AntonioManresa9/validacion_cypress/blob/main/Capturas%20testing%20cypress/Captura6.png)
 
 Revisé el selector find.com/hexage para asegurarme de que estuviera bien definido. Luego, usé cy.get('selector').should('exist') para confirmar que el elemento estuviera en el DOM y ajusté el tiempo de espera si era necesario.
-![Solución](ruta/a/la/imagen.jpg)
+![Solución](https://github.com/AntonioManresa9/validacion_cypress/blob/main/Capturas%20testing%20cypress/Captura7.png)
 
 # Uso de Cypress
 
