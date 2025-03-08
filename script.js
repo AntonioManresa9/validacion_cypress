@@ -29,147 +29,138 @@ fechaNacimiento.setAttribute('max', maxDate.toISOString().split('T')[0]);
 // Variable para controlar si el formulario ha sido enviado al menos una vez
 let formSubmitted = false;
 
-// Funciones para mostrar y ocultar errores
+// Función para mostrar y ocultar errores
 function showError(element, message) {
     element.textContent = message;
     element.style.display = 'block';  // Se hace visible
-  }
-  
-  function hideError(element) {
-    element.style.display = 'block';   // Se oculta completamente
-  }
-  
+    element.classList.add('visible'); // Agrega la clase 'visible'
+}
+
+function hideError(element) {
+    element.style.display = 'none';   // Se oculta completamente
+    element.classList.remove('visible'); // Elimina la clase 'visible'
+}
 
 // Función para calcular la edad
 function calculateAge(birthdate) {
-  const today = new Date();
-  const birthDate = new Date(birthdate);
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const monthDiff = today.getMonth() - birthDate.getMonth();
-  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-    age--;
-  }
-  return age;
-}
-// Ejemplo de JavaScript de validación
-function validatePasswords() {
-  const password = document.getElementById('password').value;
-  const confirmPassword = document.getElementById('confirm-password').value;
-  const errorMessage = document.getElementById('confirm-password-error');
-
-  if (password !== confirmPassword) {
-      errorMessage.classList.add('visible');
-  } else {
-      errorMessage.classList.remove('visible');
-  }
+    const today = new Date();
+    const birthDate = new Date(birthdate);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
 }
 
-// Agregar el evento de escucha al campo de confirmación de contraseña
-document.getElementById('confirm-password').addEventListener('input', validatePasswords);
+// Función para alternar la visibilidad de la contraseña
+function togglePassword(fieldId) {
+    const field = document.getElementById(fieldId);
+    const type = field.getAttribute('type') === 'password' ? 'text' : 'password';
+    field.setAttribute('type', type);
+}
 
 // Función para validar el formulario
 function validateForm() {
-  let isValid = true;
+    let isValid = true;
 
-  if (formSubmitted) {  // Solo muestra errores si el usuario ha intentado enviar el formulario
-    if (!nombre.value.trim()) {
-      showError(nombreError, 'El nombre es obligatorio');
-      nombre.classList.add('error');
-      isValid = false;
-    } else {
-      hideError(nombreError);
-      nombre.classList.remove('error');
+    if (formSubmitted) {
+        if (!nombre.value.trim()) {
+            showError(nombreError, 'El nombre es obligatorio');
+            nombre.classList.add('error');
+            isValid = false;
+        } else {
+            hideError(nombreError);
+            nombre.classList.remove('error');
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email.value.trim() || !emailRegex.test(email.value.trim())) {
+            showError(emailError, 'Por favor, introduce un email válido');
+            email.classList.add('error');
+            isValid = false;
+        } else {
+            hideError(emailError);
+            email.classList.remove('error');
+        }
+
+        if (!fechaNacimiento.value) {
+            showError(fechaNacimientoError, 'Este campo es obligatorio');
+            fechaNacimiento.classList.add('error');
+            isValid = false;
+        } else {
+            const age = calculateAge(fechaNacimiento.value);
+            if (age < 18 || age > 90) {
+                showError(fechaNacimientoError, 'Debes tener entre 18 y 90 años');
+                fechaNacimiento.classList.add('error');
+                isValid = false;
+            } else {
+                hideError(fechaNacimientoError);
+                fechaNacimiento.classList.remove('error');
+            }
+        }
+
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!password.value || !passwordRegex.test(password.value)) {
+            showError(passwordError, 'La contraseña debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas, números y símbolos');
+            password.classList.add('error');
+            isValid = false;
+        } else {
+            hideError(passwordError);
+            password.classList.remove('error');
+        }
+
+        if (password.value !== confirmPassword.value) {
+            showError(confirmPasswordError, 'Las contraseñas no coinciden');
+            confirmPassword.classList.add('error');
+            isValid = false;
+        } else {
+            hideError(confirmPasswordError);
+            confirmPassword.classList.remove('error');
+        }
+
+        if (!privacyPolicy.checked) {
+            showError(privacyPolicyError, 'Debes aceptar la política de privacidad');
+            isValid = false;
+        } else {
+            hideError(privacyPolicyError);
+        }
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email.value.trim() || !emailRegex.test(email.value.trim())) {
-      showError(emailError, 'Por favor, introduce un email válido');
-      email.classList.add('error');
-      isValid = false;
-    } else {
-      hideError(emailError);
-      email.classList.remove('error');
-    }
-
-    if (!fechaNacimiento.value) {
-      showError(fechaNacimientoError, 'Este campo es obligatorio');
-      fechaNacimiento.classList.add('error');
-      isValid = false;
-    } else {
-      const age = calculateAge(fechaNacimiento.value);
-      if (age < 18 || age > 90) {
-        showError(fechaNacimientoError, 'Debes tener entre 18 y 90 años');
-        fechaNacimiento.classList.add('error');
-        isValid = false;
-      } else {
-        hideError(fechaNacimientoError);
-        fechaNacimiento.classList.remove('error');
-      }
-    }
-
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!password.value || !passwordRegex.test(password.value)) {
-      showError(passwordError, 'La contraseña debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas, números y símbolos');
-      password.classList.add('error');
-      isValid = false;
-    } else {
-      hideError(passwordError);
-      password.classList.remove('error');
-    }
-
-    if (password.value !== confirmPassword.value) {
-      showError(confirmPasswordError, 'Las contraseñas no coinciden');
-      confirmPassword.classList.add('error');
-      isValid = false;
-    } else {
-      hideError(confirmPasswordError);
-      confirmPassword.classList.remove('error');
-    }
-
-    if (!privacyPolicy.checked) {
-      showError(privacyPolicyError, 'Debes aceptar la política de privacidad');
-      isValid = false;
-    } else {
-      hideError(privacyPolicyError);
-    }
-  }
-
-  submitBtn.disabled = !isValid;
-  return isValid;
+    return isValid;
 }
-// Validación de contraseñas en tiempo real
-confirmPassword.addEventListener('input', function() {
-  validateForm();  // Valida solo las contraseñas cuando el usuario escriba en confirm-password
-});
-
-// Agregar eventos de entrada para corregir errores en tiempo real después de enviar
-nombre.addEventListener('input', validateForm);
-email.addEventListener('input', validateForm);
-fechaNacimiento.addEventListener('change', validateForm);
-password.addEventListener('input', validateForm);
-confirmPassword.addEventListener('input', validateForm);
-privacyPolicy.addEventListener('change', validateForm);
 
 // Manejo del envío del formulario
 submitBtn.addEventListener('click', function (e) {
-  e.preventDefault();
-  formSubmitted = true;
+    e.preventDefault();
+    formSubmitted = true;
 
-  if (validateForm()) {
-    form.style.display = 'none';
-    confirmation.style.display = 'block';
+    if (validateForm()) {
+        form.style.display = 'none';
+        confirmation.style.display = 'block';
 
-    document.getElementById('welcome-name').textContent = nombre.value;
-    document.getElementById('confirm-nombre').textContent = nombre.value;
-    document.getElementById('confirm-email').textContent = email.value;
-    document.getElementById('confirm-fecha').textContent = new Date(fechaNacimiento.value).toLocaleDateString('es-ES');
-    document.getElementById('confirm-edad').textContent = calculateAge(fechaNacimiento.value);
-  }
+        document.getElementById('welcome-name').textContent = nombre.value;
+        document.getElementById('confirm-nombre').textContent = nombre.value;
+        document.getElementById('confirm-email').textContent = email.value;
+        document.getElementById('confirm-fecha').textContent = new Date(fechaNacimiento.value).toLocaleDateString('es-ES');
+        document.getElementById('confirm-edad').textContent = calculateAge(fechaNacimiento.value);
+    }
 });
 
 // Botón de continuar en la página de confirmación
 document.getElementById('continue-btn').addEventListener('click', function () {
-  window.location.href = 'bienvenido.html';
+    window.location.href = 'bienvenido.html';
+});
+
+// Validación en tiempo real de las contraseñas
+confirmPassword.addEventListener('input', function () {
+    if (password.value && password.value !== confirmPassword.value) {
+        showError(confirmPasswordError, 'Las contraseñas no coinciden');
+        confirmPassword.classList.add('error');
+    } else {
+        hideError(confirmPasswordError);
+        confirmPassword.classList.remove('error');
+    }
 });
 
 // Validación inicial
